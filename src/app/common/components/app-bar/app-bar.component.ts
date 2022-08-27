@@ -12,4 +12,8 @@ export class AppBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // TODO
+  // 1. Add check if logged in show myProfile and logout
+  // 2. If logged in Let's Chat title redirect to chat-main
+
 }

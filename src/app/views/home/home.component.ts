@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public login: boolean = false;
+  public login: boolean = true;
   public signup: boolean = false;
   public activeButton: boolean = false;
   constructor() { }
