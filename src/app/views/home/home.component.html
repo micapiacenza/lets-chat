@@ -1,5 +1,7 @@
-<button (click)="showLoginForm()" class="btn btn-outline-info">Login</button>
-<button type="button" (click)="showCreateAccountForm()" class="btn btn-outline-info">Signup</button>
+<div class="container">
+  <button (click)="showLoginForm()" class="btn btn-outline-info">Login</button>
+  <button type="button" (click)="showCreateAccountForm()" class="btn btn-outline-info">Signup</button>
 
-<app-login *ngIf='login'></app-login>
-<app-create-account *ngIf='signup'></app-create-account>
+  <app-login *ngIf='login'></app-login>
+  <app-create-account *ngIf='signup'></app-create-account>
+</div>

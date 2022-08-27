@@ -10,6 +10,7 @@ import { CreateAccountComponent } from './views/create-account/create-account.co
 import { MainChatComponent } from './views/main-chat/main-chat.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { HomeComponent } from './views/home/home.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HomeComponent } from './views/home/home.component';
     RouterModule,
     AppRoutingModule,
     AppBarModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
