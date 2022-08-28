@@ -11,6 +11,7 @@ import { MainChatComponent } from './views/main-chat/main-chat.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { HomeComponent } from './views/home/home.component';
 import {FormsModule} from "@angular/forms";
+import {MainChatModule} from "./views/main-chat/main-chat.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     AppBarModule,
     FormsModule,
+    MainChatModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
