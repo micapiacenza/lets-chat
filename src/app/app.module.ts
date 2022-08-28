@@ -12,6 +12,7 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { HomeComponent } from './views/home/home.component';
 import {FormsModule} from "@angular/forms";
 import {MainChatModule} from "./views/main-chat/main-chat.module";
+import {ProfileModule} from "./views/profile/profile.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MainChatModule} from "./views/main-chat/main-chat.module";
     AppBarModule,
     FormsModule,
     MainChatModule,
+    ProfileModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
