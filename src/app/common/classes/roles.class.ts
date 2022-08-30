@@ -1,6 +1,6 @@
 // Roles class
-export class Roles {
-  superAdmin: string | undefined;
-  groupAdmin: string | undefined;
-  groupAssis: string | undefined;
+export enum Roles {
+  superAdmin = 'superAdmin',
+  groupAdmin = 'groupAdmin',
+  groupAssis = 'groupAssis',
 }
