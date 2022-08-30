@@ -6,6 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-tab-content.component.css']
 })
 export class UsersTabContentComponent implements OnInit {
+  public userList = [
+    'user 1',
+    'user 1',
+    'user 1',
+    'user 1',
+    'user 1',
+    'user 1',
+    'user 1',
+  ];
 
   constructor() { }
 

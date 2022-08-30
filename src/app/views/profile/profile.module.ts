@@ -7,6 +7,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { GroupRoomTabContentComponent } from './views/group-room-tab-content/group-room-tab-content.component';
 import { CreateGroupComponent } from './views/create-group/create-group.component';
 import { CreateRoomComponent } from './views/create-room/create-room.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CreateRoomComponent } from './views/create-room/create-room.component';
   imports: [
     BrowserModule,
     FontAwesomeModule,
+    RouterModule,
   ],
   providers: [],
     exports: [
