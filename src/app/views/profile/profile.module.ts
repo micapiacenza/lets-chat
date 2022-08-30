@@ -2,15 +2,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ProfileComponent} from "./profile.component";
 import { ProfileSettingsComponent } from './common/components/profile-settings/profile-settings.component';
+import { UsersTabContentComponent } from './views/users-tab-content/users-tab-content.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { GroupRoomTabContentComponent } from './views/group-room-tab-content/group-room-tab-content.component';
+import { CreateGroupComponent } from './views/create-group/create-group.component';
+import { CreateRoomComponent } from './views/create-room/create-room.component';
 
 @NgModule({
   declarations: [
-
-    ProfileSettingsComponent
+     ProfileSettingsComponent,
+     UsersTabContentComponent,
+     GroupRoomTabContentComponent,
+     CreateGroupComponent,
+     CreateRoomComponent
   ],
   imports: [
     BrowserModule,
-
+    FontAwesomeModule,
   ],
   providers: [],
     exports: [

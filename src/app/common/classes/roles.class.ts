@@ -1,4 +1,4 @@
-// Roles class
+// Roles enum
 export enum Roles {
   superAdmin = 'superAdmin',
   groupAdmin = 'groupAdmin',
