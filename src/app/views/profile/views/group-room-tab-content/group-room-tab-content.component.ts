@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserInterface} from "../../../../common/interfaces/user.interface";
+import {Roles} from "../../../../common/interfaces/roles";
 
 @Component({
   selector: 'app-group-room-tab-content',
@@ -20,6 +22,17 @@ export class GroupRoomTabContentComponent implements OnInit {
   ];
   public indexExpanded: number= -1;
   public isExpand: boolean = false;
+  public currentUser: UserInterface = {
+    email: undefined,
+    groups: [],
+    id: undefined,
+    pwd: undefined,
+    role: Roles.groupAssis,
+    rooms: [],
+    username: undefined
+  }
+  public roles = Roles;
+
   constructor() { }
 
   ngOnInit(): void {

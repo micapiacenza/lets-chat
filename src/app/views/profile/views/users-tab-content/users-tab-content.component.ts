@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserInterface} from "../../../../common/interfaces/user.interface";
+import {Roles} from "../../../../common/interfaces/roles";
 
 @Component({
   selector: 'app-users-tab-content',
@@ -15,6 +17,16 @@ export class UsersTabContentComponent implements OnInit {
     'user 1',
     'user 1',
   ];
+  public currentUser: UserInterface = {
+    email: undefined,
+    groups: [],
+    id: undefined,
+    pwd: undefined,
+    role: Roles.groupAssis,
+    rooms: [],
+    username: undefined
+  }
+  public roles = Roles;
 
   constructor() { }
 
