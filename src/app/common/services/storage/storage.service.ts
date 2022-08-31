@@ -13,7 +13,7 @@ export enum STORAGE_KEYS {
 
 export class StorageService {
 
-// retrieve from local storage
+// Retrieve from local storage
   public getItem(key: STORAGE_KEYS) {
     try {
       return JSON.parse(window.localStorage.getItem(key) ?? '');
@@ -22,7 +22,7 @@ export class StorageService {
     }
   }
 
-//set
+//Set
   public setItem(key: STORAGE_KEYS, value: any) {
     window.localStorage.setItem(key, JSON.stringify(value));
   }
