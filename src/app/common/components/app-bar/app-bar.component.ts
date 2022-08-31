@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth/auth.service";
+import {UserInterface} from "../../interfaces/user.interface";
+import {Roles} from "../../interfaces/roles";
 
 @Component({
   selector: 'app-bar',
@@ -8,15 +10,17 @@ import {AuthService} from "../../services/auth/auth.service";
 })
 export class AppBarComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
   }
 
-  // TODO
-  // 1. Add check if logged in show myProfile and logout
-  // 2. If logged in Let's Chat title redirect to chat-main
+  // Check if user is logged in
+  public isLogged(): boolean {
+    return this.auth.isUserLoggedIn;
+  }
 
+  // Calls logout function
   public logOut() {
     this.auth.logOut();
   }
