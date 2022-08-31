@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-bar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -15,5 +16,9 @@ export class AppBarComponent implements OnInit {
   // TODO
   // 1. Add check if logged in show myProfile and logout
   // 2. If logged in Let's Chat title redirect to chat-main
+
+  public logOut() {
+    this.auth.logOut();
+  }
 
 }
