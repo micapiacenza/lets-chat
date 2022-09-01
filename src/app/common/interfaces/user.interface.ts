@@ -11,3 +11,4 @@ export interface UserInterface {
   groups: GroupInterface[];
   rooms: RoomInterface[];
 }
+
