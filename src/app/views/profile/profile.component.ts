@@ -8,7 +8,6 @@ import {AuthService} from "../../common/services/auth/auth.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public roles = Roles;
 
   constructor(private auth: AuthService) {
   }

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public login() {
+  public login(): void {
     this.auth.userAuth();
   }
 }
