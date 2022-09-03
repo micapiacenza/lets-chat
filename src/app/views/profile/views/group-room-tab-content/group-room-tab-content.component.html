@@ -1,12 +1,19 @@
 <div class="my-3 mx-3" *ngIf="currentUser() | async as user">
   <div class="row my-2">
     <h5 class="col">Groups & Rooms</h5>
-    <button *ngIf="roles.superAdmin || roles.groupAdmin" type="button" class="btn btn-outline-info col-2 mx-1" routerLink="/create-group">New Group</button>
-    <button type="button" class="btn btn-outline-info col-2 mx-1" routerLink="/create-room">New Room</button>
+<!--    Show for superAdmin & groupAdmin  -->
+    <button *ngIf="user.role === roles.superAdmin || roles.groupAdmin" type="button" class="btn btn-outline-info col-2 mx-1" routerLink="/create-group">New Group</button>
 
-    <div *ngIf="roles.superAdmin">❗️ You can see all groups & rooms from the app.</div>
-    <div *ngIf="roles.groupAdmin">❗️ You can only see groups & rooms that you are an admin of.</div>
-    <div *ngIf="roles.groupAssis">❗️ You can only see groups & rooms that you belong to.</div>
+<!--    Show except regular users -->
+<!--    TODO: Allow assistant to create rooms only from groups they belong-->
+    <button *ngIf="user.role === roles.superAdmin || roles.groupAdmin" type="button" class="btn btn-outline-info col-2 mx-1" routerLink="/create-room">New Room</button>
+
+    <!--    Show for superAdmin -->
+    <div *ngIf="user.role === roles.superAdmin">❗️ You can see all groups & rooms from the app.</div>
+    <!--    Show for groupAdmin -->
+    <div *ngIf="user.role === roles.groupAdmin">❗️ You can only see groups & rooms that you are an admin of.</div>
+    <!--    Show for groupAssis -->
+    <div *ngIf="user.role === roles.groupAssis">❗️ You can only see groups & rooms that you belong to.</div>
   </div>
 
   <!--  Group & Room List-->
@@ -15,14 +22,16 @@
       <div (click)="expandCard()" class="col w-100 text-black" type="button">
         {{groupList}}
       </div>
-      <div *ngIf="!roles.groupAssis" class="col-1 text-info"> X </div>
+<!--      Show to superAdmin & groupAdmin -->
+      <div *ngIf="user.role === roles.superAdmin || roles.groupAdmin" class="col-1 text-info"> X </div>
     </div>
 
     <div *ngIf="isExpand" class="my-2 p-2">
       <div *ngFor="let roomList of user.rooms" class="accordion-body border-bottom">
         <div class="row">
           <div class="col">{{roomList}}</div>
-          <div *ngIf="!roles.groupAssis" class="col-1 text-info"> X </div>
+<!--      Show to superAdmin & groupAdmin -->
+          <div *ngIf="user.role === roles.superAdmin || roles.groupAdmin" class="col-1 text-info"> X </div>
         </div>
       </div>
     </div>

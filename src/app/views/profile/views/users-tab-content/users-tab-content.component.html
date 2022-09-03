@@ -1,23 +1,40 @@
-<div class="my-3 mx-3">
+<div class="my-3 mx-3" *ngIf="currentUser() | async as user">
   <div class="row my-2">
     <h5 class="col">Users</h5>
-    <button *ngIf="roles.superAdmin  || roles.groupAdmin" type="button" class="btn btn-outline-info col-2 mx-1">Create User</button>
+    <!--    Show for superAdmin & groupAdmin  -->
+    <button *ngIf="user.role === roles.superAdmin || roles.groupAdmin" type="button" class="btn btn-outline-info col-2 mx-1">Create User</button>
 
-    <div *ngIf="roles.superAdmin">❗️ You can see all users from the app.</div>
-    <div *ngIf="roles.groupAdmin">❗️ You can only see users from groups & rooms that you are an admin of.</div>
-    <div *ngIf="roles.groupAssis">❗️ You can only see users from groups & rooms that you belong to.</div>
+<!--    Show for superAdmin -->
+    <div *ngIf="user.role === roles.superAdmin">❗️ You can see all users from the app.</div>
+<!--    Show for groupAdmin -->
+    <div *ngIf="user.role === roles.groupAdmin">❗️ You can only see users from groups & rooms that you are an admin of.</div>
+<!--    Show for groupAssis -->
+    <div *ngIf="user.role === roles.groupAssis">❗️ You can only see users from groups & rooms that you belong to.</div>
   </div>
 
   <!--  Users List-->
   <div *ngFor="let userList of userList" class="accordion-body">
     <div class="row bg-light text-dark my-2 p-2 border border-1 rounded">
       <div class="col text-capitalize">{{userList}}</div>
-      <small *ngIf="roles.superAdmin" class="col-2 text-info"> Add to group </small>
-      <small *ngIf="roles.superAdmin || roles.groupAdmin" class="col-2 text-info"> Add to room </small>
-      <small *ngIf="roles.superAdmin || roles.groupAdmin" class="col-2 text-info"> Make assistant </small>
-      <small *ngIf="roles.superAdmin"  class="col-2 text-info"> Make group admin </small>
-      <small *ngIf="roles.superAdmin" class="col-2 text-info"> Make super admin </small>
-      <div *ngIf="roles.superAdmin" class="col-1 text-info"> X </div>
+      <!--    Show for superAdmin only -->
+      <small *ngIf="user.role === roles.superAdmin || roles.groupAdmin" class="col-2 text-info"> Add to group </small>
+
+      <!--    Show for superAdmin & groupAdmin only -->
+      <small *ngIf="user.role === roles.superAdmin || roles.groupAdmin" class="col-2 text-info"> Add to room </small>
+
+      <!--    Show for superAdmin only -->
+      <small *ngIf="user.role === roles.superAdmin" class="col-2 text-info"> Make super admin </small>
+
+      <!--    Show for superAdmin only -->
+      <small *ngIf="user.role === roles.superAdmin"  class="col-2 text-info"> Make group admin </small>
+
+      <!--    Show for superAdmin & groupAdmin only -->
+      <small *ngIf="user.role === roles.superAdmin || roles.groupAdmin" class="col-2 text-info"> Make assistant </small>
+
+      <!--    Show for superAdmin only -->
+<!--      TODO: Add to be able to see users only to groups/rooms are admin assist, -->
+<!--      TODO: to display remove option only for groups/rooms beloging to         -->
+      <div *ngIf="user.role === roles.superAdmin || roles.groupAdmin" class="col-1 text-info"> X </div>
     </div>
   </div>
 </div>
