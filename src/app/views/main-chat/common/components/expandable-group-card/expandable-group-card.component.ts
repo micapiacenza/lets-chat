@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../../../common/services/auth/auth.service";
 
 @Component({
   selector: 'app-expandable-group-card',
@@ -20,9 +21,17 @@ export class ExpandableGroupCardComponent implements OnInit {
   ];
   public indexExpanded: number= -1;
   public isExpand: boolean = false;
-  constructor() { }
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Get current user from AuthService
+   */
+  public currentUser() {
+    return this.auth.getCurrentUser();
   }
 
   public expandCard() {
