@@ -1,15 +1,17 @@
-const user = require('./user/room.model');
-// USER
+const room = require('./room/room.model');
+
 const put_room = () => {}
 const get_room = () => {
-    return user.findOne();
+    return room.findOne();
 }
-const post_room = () => {}
+const get_users_room = () => {}
 const delete_room = () => {}
+const delete_user_room = () => {}
 
 module.exports = {
     put_room,
     get_room,
-    post_room,
+    get_users_room,
     delete_room,
+    delete_user_room,
 }

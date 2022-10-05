@@ -1,17 +1,15 @@
-const user = require('./user/group.model');
-// USER
+const group = require('./group/group.model');
+
 const put_group = () => {}
 const get_group = () => {
-    return user.findOne();
+    return group.findOne();
 }
-const post_group = () => {}
+const get_rooms_in_group = () => {}
 const delete_group = () => {}
-
-// user.create({username: 'test83'});
 
 module.exports = {
     put_group,
     get_group,
-    post_group,
+    get_rooms_in_group,
     delete_group,
 }

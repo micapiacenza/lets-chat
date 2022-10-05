@@ -13,8 +13,8 @@ router.get('/:id', async (req, res, next) => {
     res.status(200);
     return res.json({ok: 'ok'});
 })
-router.get('/:id/assign/:roleType', async (req, res, next) => {
-    await controller.post_group();
+router.get('/:id/room/:id', async (req, res, next) => {
+    await controller.get_rooms_in_group();
     res.status(200);
     return res.json({ok: 'ok'});
 })
