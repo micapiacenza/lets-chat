@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const {connect} = require('mongoose'); // Object Document Mapping lib
-const routes = require('./routes');
+// const routes = require('./user/user.routes');
 
 // Express app
 const app = express();
@@ -25,7 +25,8 @@ try {
             res.locals.path = req.path;
             next();
         });
-
+        const apiRoutes = require('./routes');
+        app.use('/api', apiRoutes);
 // routes
         app.get('/', (req, res) => {
             res.redirect('/main-chat');

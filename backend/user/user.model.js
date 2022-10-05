@@ -13,7 +13,11 @@ const UserModel = {
         required: true,
         type: String,
     },
-    
+    role: {
+        required: true,
+        type: String,
+    },
+
 }
 
-module.exports = model( 'User1',new Schema(UserModel));
+module.exports = model( 'User',new Schema(UserModel));
