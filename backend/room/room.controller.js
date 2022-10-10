@@ -1,17 +1,24 @@
-const room = require('./room/room.model');
+const RoomModel = require('./room.model');
 
-const put_room = () => {}
-const get_room = () => {
-    return room.findOne();
-}
-const get_users_room = () => {}
-const delete_room = () => {}
-const delete_user_room = () => {}
+const put_room = async (email, username, role, pwd) => {
+    return await RoomModel.create({name});
+};
+
+const list_rooms = () => {
+    return RoomModel.find()
+};
+
+const get_room = (id) => {
+    return RoomModel.findById(id);
+};
+
+const delete_room = (id) => {
+    return RoomModel.findByIdAndRemove(id);
+};
 
 module.exports = {
     put_room,
+    list_rooms,
     get_room,
-    get_users_room,
     delete_room,
-    delete_user_room,
 }

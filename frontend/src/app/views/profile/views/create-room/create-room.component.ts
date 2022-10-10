@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RoomService} from "../../../../common/services/room/room.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-create-room',
@@ -18,10 +20,18 @@ export class CreateRoomComponent implements OnInit {
     'group 3',
     'group 4',
   ];
+  public rooms: Observable<any> | undefined;
 
-  constructor() { }
+  constructor(private roomService: RoomService) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Create Rooms
+   */
+  public createRooms(body: any): Observable<any> {
+    return this.roomService.createRoom(body);
   }
 
 }
