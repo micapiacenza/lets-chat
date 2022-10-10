@@ -3,27 +3,37 @@ const controller = require('./room.controller');
 
 const router = express.Router();
 
-router.put('/', async (req, res, next) => {
+router.put('/create', async (req, res, next) => {
     await controller.put_room();
     res.status(200);
     return res.json({ok: 'ok'});
-})
+});
+
 router.get('/:id', async (req, res, next) => {
     await controller.get_room();
     res.status(200);
     return res.json({ok: 'ok'});
-})
-router.get('/room/:id/user/:id', async (req, res, next) => {
+});
+
+router.get('/:is/users', async (req, res, next) => {
     await controller.get_users_room();
     res.status(200);
     return res.json({ok: 'ok'});
-})
-router.delete('/', async (req, res, next) => {
+});
+
+router.put('/:id/add-user', async (req, res, next) => {
+    await controller.get_users_room();
+    res.status(200);
+    return res.json({ok: 'ok'});
+});
+
+router.delete('/:id', async (req, res, next) => {
     await controller.delete_room();
     res.status(200);
     return res.json({ok: 'ok'});
-})
-router.delete('/', async (req, res, next) => {
+});
+
+router.delete('/room/:id/remove-user', async (req, res, next) => {
     await controller.delete_user_room();
     res.status(200);
     return res.json({ok: 'ok'});

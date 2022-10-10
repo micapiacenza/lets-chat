@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userRoutes = require('./user/user.routes');
+const groupRoutes = require('./group/group.routes');
 
 router.addRoute = (...args) => {
     router.use(...args);
@@ -16,5 +17,6 @@ router.addRoute = (...args) => {
 };
 
 router.addRoute('/user', userRoutes);
+router.addRoute('/group', groupRoutes);
 
 module.exports = router;
