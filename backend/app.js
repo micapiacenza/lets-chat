@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const {connect} = require('mongoose'); // Object Document Mapping lib
 // const routes = require('./user/user.routes');
 
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 // Express app
 const app = express();
 const cors = require('cors');
@@ -16,9 +16,6 @@ try {
     connect(dbURI, {useNewUrlParser: true}, () => {
         console.log('mongoose connected');
         app.listen(3000);
-
-// register view engine
-        app.set('view engine', 'ejs');
 
 // middleware & static files
         app.use(express.static('public'));
@@ -45,20 +42,38 @@ try {
         });
         const apiRoutes = require('./routes');
         app.use('/api', apiRoutes);
-// routes
-        app.get('/', (req, res) => {
-            res.redirect('/main-chat');
-        });
 
-        app.get('/profile', (req, res) => {
-            res.render('profile', {title: 'Profile'});
-        });
+        // Websockets
+        const websocket = require('ws');
+        const wss = new websocket.WebSocketServer({port:3001, path:'groupId:roomId'});
+        const clients = new Map();
+        wss.on('connection', (ws) => {
+            console.log('connection ws' );
+            const id = uuidv4();
+            const metadata = {id};
+            clients.set(ws, metadata)
+            ws.on('message', (message) => {
+                const payload = JSON.parse(message);
+                const metadata = clients.get(ws);
+                console.log('ws message', payload, metadata);
 
-
-// 404 page
-        app.use((req, res) => {
-            res.status(404).render('404', {title: '404'});
+                const outboundMessage = JSON.stringify(payload);
+                [...clients.keys()].forEach(client => {
+                    client.send(outboundMessage);
+                })
+            });
         });
+            wss.on('close', () => {
+                clients.delete(wss);
+            });
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        console.log("wss up");
     });
 } catch (e) {
     console.error(e);

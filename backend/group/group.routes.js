@@ -25,7 +25,7 @@ router.put('/create', async (req, res, next) => {
 router.get('/list', async (req, res, next) => {
     try {
         console.log(req.body);
-        const groups = await controller.list_groups();
+        const groups = await controller.group_list();
         res.status(200);
         return res.json({groups});
     } catch (e) {
@@ -64,9 +64,51 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 router.get('/:id/rooms', async (req, res, next) => {
-    await controller.get_rooms_in_group();
-    res.status(200);
-    return res.json({ok: 'ok'});
+    try {
+        console.log(req.params);
+        const room = await controller.get_rooms_in_group(req.params.id, req.params.rooms);
+        res.status(200);
+        return res.json({room});
+    } catch (e) {
+        res.status(400);
+        return res.json({e});
+    }
+});
+
+router.post('/:id/rooms/:roomId/users', async (req, res, next) => {
+    try {
+        console.log(req.params)
+        const room = await controller.get_rooms_in_group(req.params.id, req.params.rooms);
+        const users = await controller.get_users_in_room(req.params.roomid, req.params.users);
+
+    } catch (e) {
+        res.status(400);
+        return res.json({e});
+    }
+    // get room by findbyid
+    // get list of users from room
+    // add users into room users list
+    // findbyid and update on users list
+});
+
+router.get('/:id/rooms/:id/chat', async (req, res, next) => {
+    try {
+        res.status(200);
+        return res.json({ok: 'ok'});
+    } catch (e) {
+        res.status(400);
+        return res.json({e});
+    }
+});
+
+router.get('/:id/rooms/:id/chat', async (req, res, next) => {
+    try {
+        res.status(200);
+        return res.json({ok: 'ok'});
+    } catch (e) {
+        res.status(400);
+        return res.json({e});
+    }
 });
 
 router.use(':groupId/room', roomRouter);
