@@ -12,4 +12,4 @@ const GroupModel = {
 
 }
 
-module.exports = model( 'Group',new Schema(GroupModel));
+module.exports = model( 'Group', new Schema(GroupModel));

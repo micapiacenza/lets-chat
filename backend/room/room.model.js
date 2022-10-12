@@ -12,4 +12,4 @@ const RoomModel = {
 
 }
 
-module.exports = model( 'Room',new Schema(RoomModel));
+module.exports = model( 'Room', new Schema(RoomModel));
