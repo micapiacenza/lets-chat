@@ -8,17 +8,6 @@ import {SocketioService} from "./socketio.service";
 })
 export class AppComponent {
   title = 'lets-chat';
-// @ts-ignore
-  thing;
 
-  constructor(private socketioService: SocketioService) {
-    socketioService.setupSocketConnection().then(ws => {
-      this.thing = ws;
-    });
-  }
-
-  pushMessage() {
-    // @ts-ignore
-    this.thing.send(JSON.stringify({roomid: 'alksjdflkajsdf', userId:'aksdjfkajsdf',message:'', onEvent:'join'}));
-  }
+  constructor() {}
 }

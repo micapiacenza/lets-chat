@@ -7,8 +7,7 @@ import {environment} from "../environments/environment";
   providedIn: 'root'
 })
 export class SocketioService {
-  public websocketUrl = 'ws://localhost:3001/ws/';
-  // public websocketUrl = 'ws://localhost:3001/ws/groupid/roomid';
+  public websocketUrl = 'ws://localhost:3001/ws';
 
   // socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
 
@@ -18,12 +17,7 @@ export class SocketioService {
   setupSocketConnection() {
     // this.socket = io(this.websocketUrl);
     const ws = new WebSocket(this.websocketUrl);
-    ws.onmessage = (webSocketMessage) => {
-      const messageBody = JSON.parse(webSocketMessage.data);
-      this.getOrCreateCursorFor(messageBody);
-    };
     return new Promise((resolve, reject) => {
-
       const timer = setInterval(() => {
         if (ws.readyState === 1) {
           clearInterval(timer);

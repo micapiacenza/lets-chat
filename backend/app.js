@@ -45,31 +45,31 @@ try {
 
         // Websockets
         const websocket = require('ws');
-        const wss = new websocket.WebSocketServer({port:3001, path:'groupId:roomId'});
+        const wss = new websocket.WebSocketServer({port:3001});
         const clients = new Map();
         wss.on('connection', (ws) => {
-            console.log('connection ws' );
+            console.log('connection ws', ws);
             const id = uuidv4();
             const metadata = {id};
             clients.set(ws, metadata)
             ws.on('message', (message) => {
-                const payload = JSON.parse(message);
+                const mess = JSON.parse(message);
                 const metadata = clients.get(ws);
-                console.log('ws message', payload, metadata);
+                console.log('ws message', mess, metadata);
 
-                const outboundMessage = JSON.stringify(payload);
+                const outboundMessage = JSON.stringify(mess);
                 [...clients.keys()].forEach(client => {
                     client.send(outboundMessage);
                 })
             });
-        });
-            wss.on('close', () => {
-                clients.delete(wss);
+            ws.on('close', () => {
+                clients.delete(ws);
             });
+        });
 
         function uuidv4() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
             });
         }
